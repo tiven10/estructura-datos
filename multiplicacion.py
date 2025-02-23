@@ -1,12 +1,10 @@
-def multiplicacion(a, b):
-    if b == 0:
-        return 0
-    elif b == 1:
-        return a
-    else:
-        return a + multiplicacion(a, b - 1)
+def multiplicar():
+    a = int(input("Ingresa el primer número: "))  
+    b = int(input("Ingresa el segundo número: "))  
+    resultado = 0
+    for i in range(b):
+        resultado = resultado + a
+    print("El resultado de la multiplicación es:", resultado)
 
-print(multiplicacion(8, 12))  
-print(multiplicacion(9, 5))
-print(multiplicacion(12, 8))
-print(multiplicacion(6, 7))
+
+multiplicar()
