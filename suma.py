@@ -3,6 +3,6 @@ def arreglo(arr, n):
         return 0
     return arr[n - 1] + arreglo(arr, n - 1)
 
-numeros = [4, 2 , 10, 5 , 12]  
+numeros = [17, 29 , 9, 34 , 15]  
 resultado = arreglo(numeros, len(numeros))
 print(f"Suma de la lista: {resultado}")
