@@ -94,4 +94,25 @@ class Libro:
     def __str__(self)->str:
         return f"Titulo: {self.Titulo}, Autor: {self.autor}, Genero: {self.genero}, Año_publicacion: {self.año_publicacion}"
     
+    def mostrar_detalles (self)-> str:
+        print("self.__str__()")
+
+
+class Cancion:
+
+    titulo: str
+    artista: str
+    album: str
+    duracion: float
+
+    def __init__(self, titulo:str, artista: str, album: str, duracion: float):
+        self.titulo= titulo
+        self.artista= artista
+        self.album= album
+        self.duracion= duracion
+
+    def __str__(self)->str:
+        return f"Titulo: {self.titulo}, Artista: {self.artista}, Album: {self.album}, Duracion: {self.duracion}"
     
+    def reproducir(self) -> str:
+        return f"Reproduciendo: {self.titulo}"
