@@ -40,17 +40,17 @@ class Carro(Vehiculo):
     pass
 
 
-vehiculo1 = Vehiculo('mazda', 5, 'carro')
+vehiculo1 = Vehiculo('audi', 5, 'carro')
 print(vehiculo1)
 vehiculo1.encender()
 vehiculo1.acelerar()
 
-moto1 = Moto('Honda', 45, 'moto')
+moto1 = Moto('Yamaha', 69, 'moto')
 print(moto1)
 moto1.encender()
 moto1.acelerar()
 
-carro1 = Carro('Renault', 10, 'carro')
+carro1 = Carro('mercedes', 14, 'carro')
 print(carro1)
 carro1.encender()
 carro1.acelerar()

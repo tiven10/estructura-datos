@@ -172,6 +172,13 @@ circulo1 = Circulo(7)
 print(f"Área del círculo: {circulo1.calcular_area()}")
 print(f"Circunferencia del círculo: {circulo1.calcular_circunferencia()}")
 
+libro1 = Libro("El perfume", "Patrick Süskind", "Novela", 1985)
+libro1.mostrar_detalles()
+
+cancion1 = Cancion('Obligao', 'Luigi 21 Plus', 'El patán', 3.31)
+print(cancion1)
+cancion1.reproducir()
+
 producto1 = Producto('Gafas de descanso', 300000, 2000)
 print(producto1)
 print(f"Total por 2 unidades: {producto1.calcular_total(2)}")
