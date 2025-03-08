@@ -69,7 +69,7 @@ class Cliente(Usuario):
     def realizar_compra(self) -> None:
         print(f"{self.nombreDeUsuario} está realizando una compra.")
 
-# Pruebas
+
 empleado1 = Empleado("Carlos", 50000, "Ventas")
 print(empleado1)
 empleado1.trabajar()
