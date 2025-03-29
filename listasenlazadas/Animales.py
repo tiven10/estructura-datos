@@ -6,7 +6,7 @@ class Animal:
         self.nombre = nombre  
         self.edad = edad
         self.tipo = tipo
-        self.siguiente: Optional["Animal"] = None  
+        self.siguiente = None  
 
     def __str__(self) -> str:
         """ Representación en cadena del animal """
@@ -15,7 +15,7 @@ class Animal:
 class ListaEnlazada:
     def __init__(self) -> None:
         """ Constructor de la lista enlazada """
-        self.cabeza: Optional[Animal] = None
+        self.cabeza= None
 
     def agregar(self, nombre: str, edad: int, tipo: str) -> None:
         """ Agrega un nuevo animal a la lista, evitando duplicados """
