@@ -6,14 +6,14 @@ class Tarea:
         self.descripcion = descripcion
         self.prioridad = prioridad
         self.fecha_vencimiento = datetime.strptime(fecha_vencimiento, "%Y-%m-%d")
-        self.next: Optional["Tarea"] = None  
+        self.next = None  
 
     def get_detalle(self) -> str:
         return f"Descripción: {self.descripcion}, Prioridad: {self.prioridad}, Vence: {self.fecha_vencimiento.strftime('%Y-%m-%d')}"
 
 class ListaTareas:
     def __init__(self) -> None:
-        self.cabeza: Optional[Tarea] = None
+        self.cabeza = None
 
     def agregar(self, descripcion: str, prioridad: int, fecha_vencimiento: str) -> None:
         nueva_tarea = Tarea(descripcion, prioridad, fecha_vencimiento)
