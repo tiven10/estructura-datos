@@ -1,86 +1,71 @@
-class Contacto:
-    def __init__(self, key, telefono):
-        self.key = key  # La llave es el nombre de la persona
-        self.telefono = telefono  # El teléfono es el valor asociado a la llave
-
-    def __repr__(self):
-        return f"Contacto(nombre={self.key}, telefono={self.telefono})"
-
-
 class TablaHash:
-    def __init__(self, tamaño=10):
-        self.tamaño = tamaño  # Tamaño de la tabla
-        self.tabla = [None] * tamaño  # Inicializamos la tabla con valores nulos
+    def __init__(self, tamaño=10):  
+        self.tamaño = tamaño
+        self.tabla = [None] * tamaño
+        self.contador = 0
 
-    def funcion_hash(self, key):
-        # Calculamos el hash a partir del nombre (key)
-        return sum(ord(c) for c in key) % self.tamaño
-
-    def insertar(self, key, telefono):
-        # Creamos un objeto Contacto
-        contacto = Contacto(key, telefono)
-        # Calculamos la posición en la tabla utilizando la función hash
-        indice = self.funcion_hash(key)
-
-        # Si la posición está vacía, almacenamos el contacto allí
-        if self.tabla[indice] is None:
-            self.tabla[indice] = [contacto]
+    def agregar(self, clave: str, valor: str):
+        if self.contador < self.tamaño:
+            hash_clave = hash(clave) % self.tamaño  
+            self.tabla[self.contador] = (clave, valor, hash_clave)  
+            print(f"Contacto agregado:")
+            print(f"Nombre  : {clave}")
+            print(f"Teléfono: {valor}")
+            print(f"Hash    : {hash_clave}")
+            print(f"Índice  : {self.contador}")
+            self.contador += 1        
         else:
-            # Si ya hay una colisión, agregamos el contacto a la lista
-            self.tabla[indice].append(contacto)
+            print("No hay espacio en la tabla.")
 
-    def buscar(self, key):
-        # Calculamos el índice de la llave (nombre)
-        indice = self.funcion_hash(key)
-        
-        # Si hay contactos en esa posición, los buscamos
-        if self.tabla[indice] is not None:
-            for contacto in self.tabla[indice]:
-                if contacto.key == key:
-                    return contacto.telefono
-        return None  # Si no se encuentra, devolvemos None
+    def buscar(self, clave: str):
+        for i in range(self.tamaño):
+            lista = self.tabla[i]
+            if lista is not None and lista[0] == clave:  
+                clave, valor, hash_clave = lista
+                print(f"\nContacto encontrado:")
+                print(f"Nombre  : {clave}")
+                print(f"Teléfono: {valor}")
+                print(f"Hash    : {hash_clave}")
+                print(f"Índice  : {i}")
+                return
+        print("\nContacto no encontrado.")
 
-    def eliminar(self, key):
-        # Calculamos el índice de la llave (nombre)
-        indice = self.funcion_hash(key)
-        
-        # Si hay contactos en esa posición, los buscamos
-        if self.tabla[indice] is not None:
-            for i, contacto in enumerate(self.tabla[indice]):
-                if contacto.key == key:
-                    del self.tabla[indice][i]
-                    return True
-        return False  # Si no se encuentra, devolvemos False
+    def eliminar(self, clave: str):
+        for i in range(self.tamaño):
+            lista = self.tabla[i]
+            if lista is not None and lista[0] == clave:  
+                self.tabla[i] = None
+                print(f"\nContacto {clave} eliminado.")
+                return
+        print("\nContacto no encontrado.")
 
     def listar(self):
-        # Imprimimos todos los contactos de la tabla
-        for i, bucket in enumerate(self.tabla):
-            if bucket:
-                print(f"Índice {i}:")
-                for contacto in bucket:
-                    print(f"  {contacto}")
-                    
-# Ejemplo de uso
-tabla = TablaHash(tamaño=5)  # Creamos una tabla de tamaño 5
-
-# Insertamos algunos contactos
-tabla.insertar("Juan Pérez", "123-456-7890")
-tabla.insertar("Ana Gómez", "987-654-3210")
-tabla.insertar("Luis Torres", "555-666-7777")
-tabla.insertar("Pedro Sánchez", "222-333-4444")
-
-# Buscar un contacto
-print("Buscar 'Ana Gómez':", tabla.buscar("Ana Gómez"))  # Debería devolver el teléfono
-
-# Eliminar un contacto
-tabla.eliminar("Juan Pérez")
-
-# Listar todos los contactos
-tabla.listar()
-
-# Intentar buscar un contacto eliminado
-print("Buscar 'Juan Pérez':", tabla.buscar("Juan Pérez"))  # Debería devolver None
+        contactos = [lista for lista in self.tabla if lista is not None]  
+        if contactos:
+            print("\nLista de contactos:")
+            for clave, valor, _ in contactos:
+                print(f"{clave}: {valor}")
+        else:
+            print("\nNo hay contactos guardados.")
 
 
+tabla = TablaHash()
 
-
+while True:
+    opcion = input("\nSeleccione una opción: agregar, buscar, eliminar, listar, salir: ").lower()
+    if opcion == 'salir':
+        break
+    elif opcion == 'agregar':
+        nombre = input("Digite el nombre del contacto: ")
+        telefono = input("Digita el número de teléfono: ")
+        tabla.agregar(nombre, telefono)
+    elif opcion == 'buscar':
+        nombre_buscar = input("Digite el nombre del contacto a buscar: ")
+        tabla.buscar(nombre_buscar)
+    elif opcion == 'eliminar':
+        nombre_eliminar = input("Digite el nombre del contacto a eliminar: ")
+        tabla.eliminar(nombre_eliminar)
+    elif opcion == 'listar':
+        tabla.listar()
+    else:
+        print("Opción no válida.")
