@@ -67,5 +67,3 @@ def menu():
             print("Hasta luego")
             break
 
-if __name__ == "__main__":
-    menu()
