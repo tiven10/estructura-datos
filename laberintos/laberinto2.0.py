@@ -1,28 +1,55 @@
-def balanceo_correcto(expresion):
-    pares = {')': '(', '}': '{', ']': '['}
-    pila = []
-    
-    for i, simbolo in enumerate(expresion):
-        if simbolo in '({[':
-            pila.append((simbolo, i))
-        elif simbolo in ')}]':
-            if not pila or pila[-1][0] != pares[simbolo]:
-                return f"Error en la posición {i}: '{simbolo}' no está balanceado."
-            pila.pop()
-    
-    if pila:
-        simbolo, pos = pila[-1]
-        return f"Error en la posición {pos}: '{simbolo}' no tiene cierre."
-    
-    return "Expresión correctamente balanceada."
+class NodoPila:
+    def __init__(self, valor, siguiente=None):  # ✅
+        self.valor = valor
+        self.siguiente = siguiente
 
+class PilaNodos:
+    def __init__(self):  # ✅
+        self.cima = None
 
-print("Verificador de balanceo de símbolos")
-print("Este programa verifica el balanceo de los siguientes símbolos: (), {}, []")
-print("Por favor, ingresa una expresión para evaluar:\n")
+    def push(self, valor):
+        nuevo = NodoPila(valor)
+        nuevo.siguiente = self.cima
+        self.cima = nuevo
 
-expresion = input("Expresión: ")
-resultado = balanceo_correcto(expresion)
+    def pop(self):
+        if self.cima is None:
+            return None
+        valor = self.cima.valor
+        self.cima = self.cima.siguiente
+        return valor
 
-print("\nResultado de la evaluación:")
-print(resultado)
+    def top(self):
+        if self.cima is None:
+            return None
+        return self.cima.valor
+
+    def vacia(self):
+        return self.cima is None
+
+def verificar_balanceo(expresion):
+    pila = PilaNodos()
+    for simbolo in expresion:
+        if simbolo in "({[":
+            pila.push(simbolo)
+        elif simbolo == ')':
+            tope = pila.pop()
+            if tope != '(':
+                return False
+        elif simbolo == '}':
+            tope = pila.pop()
+            if tope != '{':
+                return False
+        elif simbolo == ']':
+            tope = pila.pop()
+            if tope != '[':
+                return False
+    return pila.vacia()
+
+# Pruebas
+expresiones = ["{[()()]}", "[(])", "{(a+b) * [c/d]}", "[{()}]", "{(a+b]}"]
+for expr in expresiones:
+    if verificar_balanceo(expr):
+        print(expr + ": Balanceado")
+    else:
+        print(expr + ": No balanceado")
