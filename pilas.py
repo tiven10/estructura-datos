@@ -1,3 +1,6 @@
+from tkinter import Menu
+
+
 class NodoPila:
     def __init__(self, valor, siguiente=None):
         self.valor = valor
@@ -79,4 +82,4 @@ while True:
         print("Opción inválida, intente de nuevo.")
 
 if __name__ == "__main__":
-    menu()
+    Menu()
