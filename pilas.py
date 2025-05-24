@@ -21,7 +21,7 @@ class PilaNodos:
 
     def pop(self):
         if self.cima is None:
-            print(" Subdesbordamiento: La pila está vacía.")
+            print("Subdesbordamiento: La pila está vacía.")
             return None
         valor = self.cima.valor
         self.cima = self.cima.siguiente
