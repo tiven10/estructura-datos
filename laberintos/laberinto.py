@@ -1,7 +1,7 @@
 class Nodo:
     def __init__(self, posicion, anterior=None):  
-        self.posicion = posicion  # Tupla (x, y)
-        self.anterior = anterior  # Nodo anterior en el camino
+        self.posicion = posicion  
+        self.anterior = anterior  
 
 
 class Pila:
@@ -73,7 +73,7 @@ class Laberinto:
         return False
 
 
-# Prueba
+
 laberinto_matriz = [
     ['S', 'O', 'X', 'X', 'O'],
     ['X', 'O', 'O', 'X', 'O'],

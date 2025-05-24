@@ -1,6 +1,3 @@
-from tkinter import Menu
-
-
 class NodoPila:
     def __init__(self, valor, siguiente=None):
         self.valor = valor

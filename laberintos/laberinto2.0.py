@@ -1,10 +1,10 @@
 class NodoPila:
-    def __init__(self, valor, siguiente=None):  # ✅
+    def __init__(self, valor, siguiente=None):  
         self.valor = valor
         self.siguiente = siguiente
 
 class PilaNodos:
-    def __init__(self):  # ✅
+    def __init__(self):  
         self.cima = None
 
     def push(self, valor):
@@ -46,7 +46,7 @@ def verificar_balanceo(expresion):
                 return False
     return pila.vacia()
 
-# Pruebas
+
 expresiones = ["{[()()]}", "[(])", "{(a+b) * [c/d]}", "[{()}]", "{(a+b]}"]
 for expr in expresiones:
     if verificar_balanceo(expr):
